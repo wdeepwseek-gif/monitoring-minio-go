@@ -1,0 +1,28 @@
+# MinIO Telegram Monitor Configuration
+# ВАЖНО: Этот файл содержит чувствительную информацию и не должен попадать в репозиторий
+# Используйте переменные окружения или секреты для продакшена
+minio:
+  endpoint: "your-minio-server:9000"
+  accessKey: "your-access-key"
+  secretKey: "your-secret-key"
+  useSSL: false
+  bucketToWatch: "your-bucket-name"
+
+telegram:
+  botToken: "your-telegram-bot-token"
+
+chats:
+  # ⚠️ ЗАМЕНИТЕ на реальные ID ваших чатов и топиков
+  - id: -1001234567890  # Пример ID чата (отрицательный для групп)
+    topic_id: 12345     # Пример ID топика в супергруппе
+    label: "devops"
+
+notifications:
+  enabledEvents:
+    - "s3:ObjectCreated:*"
+    - "s3:ObjectRemoved:*"
+  excludeExtensions:
+    - ".tmp"
+    - ".log"
+  minSizeBytes: 0
+  maxSizeBytes: 107374182400
